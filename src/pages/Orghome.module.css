@@ -1,0 +1,101 @@
+org {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.slidebar {
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.maincontent {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userprofile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.userprofilename {
+  margin-right: 0;
+}
+
+.userprofilenotification {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.line {
+  height: 30px;
+  width: 1px;
+  /* border: 2px slod black; */
+  background-color: black;
+}
+
+.userprofile button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: white;
+  color: brown;
+}
+
+.userprofileicon {
+  font-size: 33px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.content h1 {
+  margin-bottom: 20px;
+}
+
+.addasset {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
