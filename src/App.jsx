@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/Org" element={<Organize />} />
           <Route path="/myposts" element={<Orghome />} />
+
         </Routes>
       </BrowserRouter>
     </div>

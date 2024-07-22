@@ -3,6 +3,7 @@ import org from "./Organize.module.css";
 import { Link } from "react-router-dom";
 import "./Temp.css";
 import { API_URL } from "./data/apipath";
+import Model from 'react-modal'
 
 const Organize = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -11,6 +12,13 @@ const Organize = () => {
   const [password,setpassword] = useState('');
   const [Email,setEmail] = useState('');
   const [Password,setPassword] = useState('');
+  const [visible,setvisible] = useState(false);
+  const [Emails,setEmails] =useState('');
+  const [OTP,setOTP] = useState('');
+  const [newPassword,setnewPassword] =useState('')
+  Model.setAppElement('#root')
+
+
 
 
   useEffect(() => {
@@ -25,6 +33,8 @@ const Organize = () => {
 
   const mess = document.getElementById('error');
   const logmess = document.getElementById('logmess');
+  const otp =document.getElementById('otp');
+  const emailcheck = document.getElementById('emailcheck');
 
   const handleSubmit = async (e)=> {
     e.preventDefault()
@@ -80,12 +90,65 @@ const Organize = () => {
       
     }
   }
+  const handleOtp =async (e)=> {
+    e.preventDefault();
+      try {
+        const response = await fetch(`${API_URL}/college/collegeotp`,{
+          method:'POST',
+          headers:{
+            'content-type':'application/json'
+          },
+          body:JSON.stringify({Emails})
+        })
+
+        const data = await response.json();
+
+        if(response.ok){
+          console.log(data);
+          otp.textContent="* OTP send successfully"
+
+        }
+        else{
+          emailcheck.textContent="Invalid Email id"
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+  }  
+
+
+  const handleResetPassword = async (e)=> {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${API_URL}/college/collegepassreset`,{
+        method:'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify({Emails,OTP,newPassword})
+      })
+
+      const data = await response.json();
+
+      if(response.ok){
+        console.log(data);
+        alert('Your password reset successfully');
+        setvisible(false);
+      }
+
+      otp.textContent="An error occured please try again"
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
   return (
     <div
       id="container"
-      className={`${org.container} ${isSignIn ? org.signin : org.signup}`}
+      className={`${org.container} ${isSignIn ? org.signin : org.signup}`} style={{ zIndex: visible ? -1 : '6' }}
     >
       <br />
       <div className={org.navbar}>
@@ -152,7 +215,7 @@ const Organize = () => {
               <button type="submit">Sign in
               </button>
               <p>
-                <button className={org.butt}>Forgot password?</button>
+                <Link onClick={(e)=> setvisible(true)}>Forget password</Link>
               </p>
               <p>
                 <span>Don't have an account?</span>
@@ -191,6 +254,41 @@ const Organize = () => {
         {/* END SIGN UP CONTENT */}
       </div>
       {/* END CONTENT SECTION */}
+      <div className={org.modal} id="popup">
+        <Model
+          isOpen={visible}
+          onRequestClose={() => setvisible(false)}
+          className={org.content}
+          // overlayClassName={org.overlay}
+          style={{
+            overlay: {
+              zIndex: 2,
+              background: 'rgba(0, 0, 0, 0.75)',
+            }
+          }}  
+        >
+            <h1 style={{color:"black"}} className={org.retext}>RESET PASSWORD</h1>
+            <p id="emailcheck" style={{color:"black"}}></p>
+            <form action="" onClick={handleOtp}>
+              <div className={org.firotp}>
+                <input type="text" placeholder="Email"  className={org.inp} value={Emails} onChange={(e)=> setEmails(e.target.value)}/>
+                <button  className={org.otp} type="submit">Send OTP</button>
+              </div>
+            </form>
+            <p id="otp" style={{color:"green"}}></p>
+            <form action="" onSubmit={handleResetPassword}>
+              <div className={org.secotp}>
+              <input type="text" placeholder="OTP"  className={org.inp} value={OTP} onChange={(e)=> setOTP(e.target.value)}/>
+              <input type="hidden" placeholder="OTP"  className={org.inp} value={Emails}/>
+              <input type="text" placeholder="New Password"  className={org.inp} value={newPassword} onChange={(e)=> setnewPassword(e.target.value)}/>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+                <button onClick={() => setvisible(false)} style={{ padding: '10px 20px', margin: '10px', }} className={org.close}>Close</button>
+                <button style={{ padding: '10px 20px', margin: '10px' }} className={org.sub} type="submit">Submit</button>
+              </div>
+            </form>
+        </Model>
+      </div>  
     </div>
   );
 };

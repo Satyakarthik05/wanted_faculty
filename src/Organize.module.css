@@ -299,7 +299,83 @@ body {
   width: 10px;
   height: 10px;
 }
+.content {
+  width: 500px;
+  height: 100vh;
+  max-height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: white;
+  border-radius: 20px;
+  border: 2px solid green;
+  margin-top: 8%;
+}
 
+.overlay {
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.75);
+}
+.modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.close{
+  background-color: rgb(196, 72, 72);
+  border-radius: 10px;
+}
+.sub{
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+.otp{
+  border-radius: 10px;
+  background-color: aqua;
+}
+.inp{
+  border-radius: 10px;
+}
+.firotp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+.firotp input{
+  margin-top: 10px;
+  width: 400px;
+  padding: 10px;
+}
+.firotp button{
+  padding: 10px;
+  margin-top: 10px;
+}
+.secotp{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+.secotp input {
+  width: 400px;
+  margin-top: 10px;
+  padding: 10px;
+}
+.resetpass{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 /* RESPONSIVE */
 
 @media only screen and (max-width: 425px) {
@@ -363,5 +439,36 @@ body {
   .text h2 {
     margin: 0.5rem;
     font-size: 2rem;
+  }
+  .content {
+    width: 300px;
+    height: 100vh;
+    max-height: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: white;
+    border-radius: 20px;
+    border: 2px solid green;
+    margin-top: 30%;
+  }
+  .retext{
+    font-size: larger;
+  }
+  .otp{
+    width: auto;
+    height: auto;
+  }
+  .secotp input {
+    width: 200px;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .firotp input{
+    width: 200px;
+    padding: 10px;
   }
 }

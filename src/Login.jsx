@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import org from "./Login.module.css";
 import axios from 'axios';
-import {API_URL} from './data/apipath';
-import {useNavigate} from 'react-router-dom'
+import { API_URL } from './data/apipath';
+import { useNavigate } from 'react-router-dom';
+import Model from 'react-modal';
+// import ForgetPassword from "./forgetPassword/ForgetPassword";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -11,8 +13,13 @@ const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [message, setMessage] = useState("");
-  const [Email,setEmail] = useState('');
-  const [Password,setPassword]= useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const [visible, setvisible] = useState(false);
+  const [Emails,setEmails] = useState('');
+  const [OTP,setOTP] = useState('');
+  const [newPassword,setnewPassword] =useState('');
+  Model.setAppElement('#root')
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,74 +32,131 @@ const Login = () => {
   };
   const mess = document.getElementById('error');
   const logmess = document.getElementById('logerror')
+  const otp =document.getElementById('otp');
+  const emailcheck = document.getElementById('emailcheck');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/faculty/facultySign`,{
-        method:'POST',
-        headers:{
-          'content-Type':'application/json'
+      const response = await fetch(`${API_URL}/faculty/facultySign`, {
+        method: 'POST',
+        headers: {
+          'content-Type': 'application/json'
         },
-        body:JSON.stringify({Name,email,password})
+        body: JSON.stringify({ Name, email, password })
       })
 
       const data = await response.json();
-      if(response.ok){
+      if (response.ok) {
         console.log(data);
         setMessage(data.message);
         alert('Registration success');
         setIsSignIn(true);
 
-      }else{
-        mess.textContent ="Email Id already Exists"
+      } else {
+        mess.textContent = "Email Id already Exists"
       }
 
     } catch (error) {
       console.error(error);
     }
 
-    
+
   };
 
-  const loginHandler = async (e)=> {
+  const loginHandler = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}/faculty/facultyLogin`,{
-        method:'POST',
-        headers:{
-          'content-Type':'application/json'
+      const response = await fetch(`${API_URL}/faculty/facultyLogin`, {
+        method: 'POST',
+        headers: {
+          'content-Type': 'application/json'
         },
-        body:JSON.stringify({Email,Password})
+        body: JSON.stringify({ Email, Password })
 
       })
 
       const data = await response.json();
-      if(response.ok){
+      if (response.ok) {
         console.log(data);
         alert('Login Successful');
-        localStorage.setItem('loginToken',data.token)
-        
-      }
-      else{
-        logmess.textContent="Invalid email or Password"
+        localStorage.setItem('loginToken', data.token)
 
       }
-    }catch (error) {
+      else {
+        logmess.textContent = "Invalid email or Password"
+
+      }
+    } catch (error) {
       console.error(error)
+    }
+  }
+
+
+  const handleOtp =async (e)=> {
+    e.preventDefault();
+      try {
+        const response = await fetch(`${API_URL}/faculty/resetpass`,{
+          method:'POST',
+          headers:{
+            'content-type':'application/json'
+          },
+          body:JSON.stringify({Emails})
+        })
+
+        const data = await response.json();
+
+        if(response.ok){
+          console.log(data);
+          otp.textContent="* OTP send successfully"
+
+        }
+        else{
+          emailcheck.textContent="Invalid Email id"
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+  }  
+
+
+  const handleResetPassword = async (e)=> {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${API_URL}/faculty/verifyotp`,{
+        method:'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify({Emails,OTP,newPassword})
+      })
+
+      const data = await response.json();
+
+      if(response.ok){
+        console.log(data);
+        alert('Your password reset successfully');
+        setvisible(false);
+      }
+
+      otp.textContent="An error occured please try again"
+    } catch (error) {
+      console.error(error);
     }
   }
 
   return (
     <div
       id="container"
-      className={`${org.container} ${isSignIn ? org.signin : org.signup}`}
+      className={`${org.container} ${isSignIn ? org.signin : org.signup}`} style={{ zIndex: visible ? -1 : '6' }}
     >
       <br />
       <div className={org.navbar}>
-        <div className={org.navlinks}>
+        <div className={org.navlinks} >
           <h3 className={org.active}>Faculty</h3>
           <h3 className={org.inactive}>
             <Link to="/org">Organization</Link>
@@ -179,7 +243,7 @@ const Login = () => {
                     placeholder="Email"
                     required
                     value={Email}
-                    onChange={(e)=> setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className={org.inputgroup}>
@@ -190,12 +254,12 @@ const Login = () => {
                     placeholder="Password"
                     required
                     value={Password}
-                    onChange={(e)=> setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <button type="submit">Sign in</button>
                 <p>
-                  <b>Forgot password?</b>
+                  <Link onClick={(e)=> setvisible(true)}>Forgot password?</Link>
                 </p>
                 <p>
                   <span>Don't have an account?</span>
@@ -211,7 +275,7 @@ const Login = () => {
       </div>
       {/* END FORM SECTION */}
       {/* CONTENT SECTION */}
-      <div className={`${org.row} ${org.contentrow}`}>
+      <div className={`${org.row} ${org.contentrow}`} >
         {/* SIGN IN CONTENT */}
         <div className={`${org.col} ${org.alignitemscenter} ${org.flexcol}`}>
           <div className={`${org.text} ${org.signin}`}>
@@ -240,6 +304,42 @@ const Login = () => {
           <p>{message.text}</p>
         </div>
       )}
+
+      <div className={org.modal} id="popup">
+        <Model
+          isOpen={visible}
+          onRequestClose={() => setvisible(false)}
+          className={org.content}
+          // overlayClassName={org.overlay}
+          style={{
+            overlay: {
+              zIndex: 2,
+              background: 'rgba(0, 0, 0, 0.75)',
+            }
+          }}  
+        >
+            <h1 style={{color:"black"}} className={org.retext}>RESET PASSWORD</h1>
+            <p id="emailcheck" style={{color:"black"}}></p>
+            <form action="" onClick={handleOtp}>
+              <div className={org.firotp}>
+                <input type="text" placeholder="Email"  className={org.inp} value={Emails} onChange={(e)=> setEmails(e.target.value)}/>
+                <button  className={org.otp} type="submit">Send OTP</button>
+              </div>
+            </form>
+            <p id="otp" style={{color:"green"}}></p>
+            <form action="" onSubmit={handleResetPassword}>
+              <div className={org.secotp}>
+              <input type="text" placeholder="OTP"  className={org.inp} value={OTP} onChange={(e)=> setOTP(e.target.value)}/>
+              <input type="hidden" placeholder="OTP"  className={org.inp} value={Emails}/>
+              <input type="text" placeholder="New Password"  className={org.inp} value={newPassword} onChange={(e)=> setnewPassword(e.target.value)}/>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+                <button onClick={() => setvisible(false)} style={{ padding: '10px 20px', margin: '10px', }} className={org.close}>Close</button>
+                <button style={{ padding: '10px 20px', margin: '10px' }} className={org.sub} type="submit">Submit</button>
+              </div>
+            </form>
+        </Model>
+      </div>
     </div>
   );
 };
