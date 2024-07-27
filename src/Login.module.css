@@ -14,7 +14,7 @@ body {
 .row {
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
+  height: 94vh;
 }
 
 .col {
@@ -277,6 +277,8 @@ body {
   display: flex;
   gap: 8px;
   border-radius: 10px;
+  position: absolute;
+  margin-top: 10px;
 }
 
 .active {
@@ -326,7 +328,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 .close{
   background-color: rgb(196, 72, 72);
@@ -378,6 +380,39 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.loader {
+  width: 1px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 5px solid #fdfdfd;
+  animation: l18 1s infinite linear;
+}
+
+@keyframes l18 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
 }
 /* RESPONSIVE */
 

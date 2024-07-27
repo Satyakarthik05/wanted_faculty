@@ -18,6 +18,7 @@ const Login = () => {
   const [visible, setvisible] = useState(false);
   const [Emails,setEmails] = useState('');
   const [OTP,setOTP] = useState('');
+  const [loading, setLoading] = useState(false);
   const [newPassword,setnewPassword] =useState('');
   Model.setAppElement('#root')
 
@@ -67,6 +68,7 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await fetch(`${API_URL}/faculty/facultyLogin`, {
@@ -77,7 +79,7 @@ const Login = () => {
         body: JSON.stringify({ Email, Password })
 
       })
-
+      setLoading(false);
       const data = await response.json();
       if (response.ok) {
         console.log(data);
@@ -154,7 +156,7 @@ const Login = () => {
       id="container"
       className={`${org.container} ${isSignIn ? org.signin : org.signup}`} style={{ zIndex: visible ? -1 : '6' }}
     >
-      <br />
+      {/* <br /> */}
       <div className={org.navbar}>
         <div className={org.navlinks} >
           <h3 className={org.active}>Faculty</h3>
@@ -223,6 +225,7 @@ const Login = () => {
                   </b>
                 </p>
               </form>
+              {loading && <div className={org.loader}></div>}
             </div>
           </div>
         </div>

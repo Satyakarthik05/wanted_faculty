@@ -214,36 +214,3 @@ th {
   font-size: 20px;
   cursor: pointer;
 }
-.applicants{
-  font-size: 30px;
-}
-.contentss {
-  /* width: 800px; */
-  width: 80%;
-  height: 100vh;
-  height: auto;
-  max-height: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  color: black;
-  border-radius: 20px;
-  border: 2px solid green;
-  margin-top: 10%;
-}
-.close{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10%;
-  width: 60px;
-  height: 40px;
-  font-size: 15px;
-  background-color: rgb(177, 3, 3);
-  border-radius: 10px;
-  /* margin-bottom: 20px; */
-
-}

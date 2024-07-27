@@ -1,0 +1,103 @@
+.formbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 91vh;
+  background: linear-gradient(45deg, #0037ec, #757575);
+}
+
+.form {
+  --width-of-input: 200px;
+  --border-height: 1px;
+  --border-before-color: rgba(95, 95, 95, 0.39);
+  --border-after-color: #7ea5f4;
+  --input-hovered-color: #4985e01f;
+  height: 500px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid black;
+  backdrop-filter: blur(10px);
+}
+/* styling of Input */
+.input {
+  color: white;
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: var(--width-of-input);
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid rgba(201, 200, 200, 0.769);
+}
+/* styling of animated border */
+.inputborder {
+  position: absolute;
+  background: rgba(201, 200, 200, 0.769);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+/* Hover on Input */
+input:hover {
+  background: var(--input-hovered-color);
+  border-radius: 12px;
+}
+input::placeholder {
+  color: rgba(201, 200, 200, 0.769);
+}
+
+input:focus {
+  outline: none;
+  background-color: var(--input-hovered-color);
+  border-radius: 12px;
+}
+
+.button {
+  width: 150px;
+  border-radius: 16px;
+  margin-top: 20px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-radius: 16px;
+  background-color: rgb(77, 224, 77);
+}
+.select {
+  width: 200px;
+  margin-left: 3px;
+    /* border: none; */
+  outline: none;
+  border-radius: 5px;
+}
+.branch {
+  color: rgba(201, 200, 200, 0.769);
+  margin-left: 10px;
+  /* height: 10px; */
+}
+.select_branch{
+  display: flex;
+  /* height: 10px; */
+  flex-direction: column;
+}
+.designation{
+  display: flex;
+  flex-direction: column;
+  color:  rgba(201, 200, 200, 0.769);
+}
+.designation_options input{
+  margin-top: 10px;
+  width: 35px;
+  height: 15px;
+}
