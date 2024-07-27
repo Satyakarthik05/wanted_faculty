@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import org from "./Login.module.css";
 import axios from 'axios';
-import { API_URL } from './data/apipath';
+import { API_URL } from '../../data/apipath';
 import { useNavigate } from 'react-router-dom';
 import Model from 'react-modal';
 // import ForgetPassword from "./forgetPassword/ForgetPassword";
@@ -159,7 +159,7 @@ const Login = () => {
       {/* <br /> */}
       <div className={org.navbar}>
         <div className={org.navlinks} >
-          <h3 className={org.active}>Faculty</h3>
+          <h3 className={org.actives}>Faculty</h3>
           <h3 className={org.inactive}>
             <Link to="/org">Organization</Link>
           </h3>

@@ -1,0 +1,27 @@
+.clg-name{
+    font-size: 30px;
+}
+li{
+    font-size: 20px;
+}
+.branch {
+    margin-left: 20%;
+}
+.name{
+    margin-left: 20px;
+}
+.AllPosts{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.filter{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: right;
+    margin-right: 10%;
+}

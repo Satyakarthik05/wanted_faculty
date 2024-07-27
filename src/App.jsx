@@ -1,26 +1,22 @@
 import React from "react";
-import Login from "./Login";
-import Organize from "./Organize";
+import Login from "./Faculty/Signup_Login/Login";
+import Organize from "./Institution/Login_Signup/Organize";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Orghome from "./pages/Orghome";
-// import Navbar from "./Components/Navbar";
-import Addpost from "./pages/Addpost";
-import Applicant from "./pages/Applicants/Applicant";
-// import Posts from "./Homecomponents/Posts";
-// import  Carousel  from "./Homecomponents/Carousel";
-// import Home from "./pages/Home/Home";
-// import Temp from "./Temp";
+import Orghome from "./Institution/Home/Orghome";
+import Addpost from "./Institution/AddPost/Addpost";
+import Applicant from "./Institution/Applicants/Applicant";
+import Navbar from "./Faculty/HomeComponents/Navbar";
+import Carousel from "./Faculty/HomeComponents/Carousel";
+import Posts from "./Faculty/HomeComponents/Posts";
+
 
 function App() {
   return (
     <div className="App">
-      {/* <Home/> */}
-      {/* <Carousel/> */}
-      {/* <Posts/> */}
-      {/* <Navbar/> */}
-      {/* <Temp /> */}
-      {/* <Orghome /> */}
+      {/* <Navbar/>
+      <Carousel/>
+      <Posts/> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />

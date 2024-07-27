@@ -1,17 +1,30 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
+import logo from "../../assets/logo.png"
+
 const Navbar = () => {
   return (
     <div>
       <nav
-        className="navbar navbar-expand-lg "
+        className="navbar navbar-expand-lg"
         style={{ backgroundColor: "var(--nudepink)" }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand " href="#">
-            <h3>Facuilty</h3>
-          </a>
+          <div className="d-flex ">
+            <a className="navbar-brand" href="#">
+              <img
+                src={logo}
+                alt=""
+                width="40"
+                height="30"
+                style={{borderRadius:"20px"}}
+              />
+            </a>
+            <a className="navbar-brand" href="#">
+              <h3>Faculty</h3>
+            </a>
+          </div>
           <button
             className="navbar-toggler"
             type="button"
@@ -35,12 +48,12 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  <h5>Features</h5>
+                  <h5>My applications</h5>
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  <h5>Pricing</h5>
+                  <h5>Profile</h5>
                 </a>
               </li>
               <li className="nav-item">

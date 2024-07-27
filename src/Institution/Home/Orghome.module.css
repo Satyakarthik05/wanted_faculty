@@ -122,9 +122,9 @@ body {
   color: var(--white);
 }
 
-.logouticon {
+.logouticons {
   font-size: 22px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .userprofileicon {
@@ -145,18 +145,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* .addasset {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  margin-left: 85%;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  color: #fff;
-  cursor: pointer;
-  background-color: var(--google-color);
-} */
 
 .addasset {
   color: white;
@@ -176,15 +164,15 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-
-table,
-th,
-td {
+table {
+  width: 100%;
+  border-collapse: collapse;
   border: 1px solid #ddd;
 }
 
-th,
-td {
+table th,
+table td {
+  border: 1px solid #ddd; /* Ensure borders are applied */
   padding: 10px;
   text-align: left;
 }
@@ -192,6 +180,7 @@ td {
 th {
   background-color: #f2f2f2;
 }
+
 
 .options {
   display: flex;

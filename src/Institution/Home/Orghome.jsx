@@ -5,7 +5,7 @@ import { FaBell } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import mod from "./Orghome.module.css";
-import { API_URL } from "../data/apipath";
+import { API_URL } from "../../data/apipath";
 import { LiaUsersSolid } from "react-icons/lia";
 import { ImUsers } from "react-icons/im";
 import Model from "react-modal";
@@ -119,7 +119,7 @@ const Orghome = () => {
                 <FaBell />
               </Link> */}
               {/* <span className={mod.line}></span> */}
-              <button className={mod.logout}>
+              <button className={mod.logouts}>
                 <Link to="/">
                   <span>Logout</span>
                   <span className={mod.logouticon}>
@@ -131,7 +131,7 @@ const Orghome = () => {
           </div>
         </div>
       </div>
-      <hr />
+      {/* <hr /> */}
       <div className={mod.maincontent}>
         <br />
         <div className={mod.content}>

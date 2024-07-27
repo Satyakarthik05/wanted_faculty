@@ -101,3 +101,9 @@ input:focus {
   width: 35px;
   height: 15px;
 }
+.backarrowss{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}

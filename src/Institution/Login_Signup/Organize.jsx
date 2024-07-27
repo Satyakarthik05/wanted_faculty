@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import org from "./Organize.module.css";
 import { Link, Navigate } from "react-router-dom";
-import "./Temp.css";
-import { API_URL } from "./data/apipath";
+// import "./Temp.css";
+import { API_URL } from "../../data/apipath";
 import Model from "react-modal";
 import { useNavigate } from "react-router-dom";
 
@@ -145,7 +145,7 @@ const Organize = () => {
       {/* <br /> */}
       <div className={org.navbar}>
         <div className={org.navlinks}>
-          <h3 className={org.active}>Organization</h3>
+          <h3 className={org.actives}>Organization</h3>
           <h3 className={org.inactive}>
             <Link to="/">Faculty</Link>
           </h3>

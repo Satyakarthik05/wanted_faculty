@@ -273,11 +273,12 @@ body {
   gap: 8px;
   position: absolute;
   margin-top: 10px;
+  height: 60px;
   border-radius: 10px;
   /* padding: 10px; */
 }
 
-.active {
+.actives {
   background-color: var(--blue);
   padding: 10px;
   border-radius: 10px;
@@ -285,6 +286,7 @@ body {
   color: var(--white);
   border: 1px solid var(--white);
   text-decoration: white underline;
+  height: 60px;
 }
 
 .inactive {
@@ -295,6 +297,7 @@ body {
 .inactive a {
   color: var(--white);
   text-decoration: none;
+  font-size: larger;
 }
 
 .butt{

@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from "react";
-import mod from "./Orghome.module.css";
+import mod from "../../Institution/Home/Orghome.module.css";
 import style from "./Addpost.module.css";
 import { Link } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
 import { MdExitToApp } from "react-icons/md";
-import { API_URL } from "../data/apipath";
+import { API_URL } from "../../data/apipath";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -85,8 +85,8 @@ const Addpost = () => {
       <div className={mod.nav}>
         <div className={mod.slidebar}>
           <div className={mod.logo}>
-            <Link to="/myposts" style={{ color: "white" }}>
-              <FaArrowLeft className={mod.backarrow} />
+            <Link to="/myposts" style={{ color: "white" }} className={mod.backarrowss}>
+              <FaArrowLeft className={mod.backarrows} />
             </Link>
             <h3>Welcome :{Details ?.Organization || "Organization"}</h3>
             <h2></h2>
