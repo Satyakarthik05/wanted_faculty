@@ -9,6 +9,7 @@ import { API_URL } from "../../data/apipath";
 import { LiaUsersSolid } from "react-icons/lia";
 import { ImUsers } from "react-icons/im";
 import Model from "react-modal";
+import style from '../AddPost/Addpost.module.css'
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
@@ -18,11 +19,25 @@ const Orghome = () => {
   const [details, setDetails] = useState([]);
   const [applicant, setApplicant] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [visibledelete,setVisibledelete] = useState(false);
+  const [deleteId,setdeleteId] = useState("");
+  const [successDelete,setSuccessdelete]=useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   Model.setAppElement('#root');
 
+  const closeDelete = ()=>{
+    setVisibledelete(false);
+  }
+
+  const handleDeleteId=(id)=>{
+    setdeleteId(id);
+    setVisibledelete(true);
+  }
+
   const postHandler = async () => {
     try {
+      setIsLoading(true);
       const token = localStorage.getItem('collegeToken');
       const response = await fetch(`${API_URL}/college/myposts`, {
         method: 'GET',
@@ -34,11 +49,14 @@ const Orghome = () => {
       setPosts(newPosts.Posts);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const getDetails = async () => {
     try {
+      setIsLoading(true);
       const token = localStorage.getItem('collegeToken');
       const response = await fetch(`${API_URL}/college/mydetails`, {
         method: 'GET',
@@ -50,41 +68,45 @@ const Orghome = () => {
       setDetails(newDetails);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
+  
 
-  const handleDelete = async (id) => {
-    const confirm = window.confirm("Are you want to delete the post");
-    if (!confirm) {
-      return;
-    } else {
-      try {
-        const response = await fetch(`${API_URL}/college/deletepost/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-
+  const handleDelete = async () => {
+    if (!deleteId) return;
+  
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${API_URL}/college/deletepost/${deleteId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      if (response.ok) {
         const data = await response.json();
-
-        if (response.ok) {
-          alert("Post deleted successfully");
-          const updatedPosts = posts.filter(post => post._id !== id);
-          setPosts(updatedPosts);
-          window.location.reload();
-        } else {
-          alert("Post not deleted, try again later");
-        }
-      } catch (error) {
-        console.error('Error deleting post:', error);
-        alert("An error occurred, please try again later");
+        setPosts(posts.filter(post => post._id !== deleteId));
+        setVisibledelete(false);
+        setSuccessdelete(true);
+        setTimeout(() => {
+          setSuccessdelete(false);
+        }, 3000); 
+      } else {
+        alert("Post not deleted, try again later");
       }
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      alert("An error occurred, please try again later");
+    } finally {
+      setIsLoading(false);
     }
   };
+  
 
   const handleApplicants = async (id) => {
     try {
+      setIsLoading(true);
       const response = await fetch(`${API_URL}/college/applicants/${id}`, {
         method: 'GET',
         headers: {
@@ -96,6 +118,8 @@ const Orghome = () => {
       setVisible(true);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -114,11 +138,6 @@ const Orghome = () => {
           </div>
           <div className={mod.header}>
             <div className={mod.userprofile}>
-              {/* <Link to="/applicant" className={mod.userprofilenotification}>
-                <h3>My Applicants</h3>
-                <FaBell />
-              </Link> */}
-              {/* <span className={mod.line}></span> */}
               <button className={mod.logouts}>
                 <Link to="/">
                   <span>Logout</span>
@@ -131,7 +150,6 @@ const Orghome = () => {
           </div>
         </div>
       </div>
-      {/* <hr /> */}
       <div className={mod.maincontent}>
         <br />
         <div className={mod.content}>
@@ -141,6 +159,7 @@ const Orghome = () => {
           </Link>
           <br />
           <br />
+          {isLoading && <div className="loader"></div>}
           {posts.length === 0 ? (
             <table>
               <thead>
@@ -180,7 +199,7 @@ const Orghome = () => {
                     <td>{item.Nofopenings}</td>
                     <td>{item.Salary}</td>
                     <td className={mod.options}>
-                      <button className={mod.optiondelete} onClick={() => handleDelete(item._id)}>
+                      <button className={mod.optiondelete} onClick={() => handleDeleteId(item._id)}>
                         <MdDeleteForever className={mod.delete} />
                       </button>
                       <button className={mod.optiondelete} onClick={() => handleApplicants(item._id)}>
@@ -239,19 +258,46 @@ const Orghome = () => {
                       <td>{item.email}</td>
                       <td>{item.Designation ? item.Designation.join(', ') : 'N/A'}</td>
                       <td>{item.Experience || 'N/A'}</td>
-                      <td className="options">
+                      <td className={mod.resume}>
+                        <a href={item.Resume} download>
+                          <button className={mod.download}>
+                            <span className={mod.downloadicon}><MdEdit/></span>
+                            <span>Download</span>
+                          </button>
+                        </a>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             )}
-            <button className={mod.close} onClick={() => setVisible(false)}>Close</button>
+          </Model>
+
+          <Model
+            isOpen={visibledelete}
+            onRequestClose={closeDelete}
+            className={mod.deleteMod}
+            style={{
+              overlay: {
+                zIndex: 2,
+                background: 'rgba(0, 0, 0, 0.75)',
+              }
+            }}
+          >
+            <h1 style={{ color: "black" }}>Delete Post</h1>
+            <div style={{ color: "black" }}>Are you sure you want to delete this post?</div>
+            <div className={mod.deleteBtn}>
+              <button className={mod.yes} onClick={handleDelete}>Yes</button>
+              <button className={mod.no} onClick={closeDelete}>No</button>
+            </div>
+            {successDelete && (
+              <div style={{ color: "green" }}>Post deleted successfully!</div>
+            )}
           </Model>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Orghome;

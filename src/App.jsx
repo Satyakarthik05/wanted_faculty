@@ -9,6 +9,7 @@ import Applicant from "./Institution/Applicants/Applicant";
 import Navbar from "./Faculty/HomeComponents/Navbar";
 import Carousel from "./Faculty/HomeComponents/Carousel";
 import Posts from "./Faculty/HomeComponents/Posts";
+import CarouselComponent from "./Faculty/HomeComponents/AboutUs";
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       {/* <Navbar/>
       <Carousel/>
       <Posts/> */}
-      <BrowserRouter>
+      <CarouselComponent/>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Org" element={<Organize />} />
@@ -25,7 +27,7 @@ function App() {
           <Route path="/addpost" element={<Addpost />} />
           <Route path="/applicant" element={<Applicant />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
