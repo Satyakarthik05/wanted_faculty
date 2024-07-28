@@ -9,15 +9,16 @@ import Applicant from "./Institution/Applicants/Applicant";
 import Navbar from "./Faculty/HomeComponents/Navbar";
 import Carousel from "./Faculty/HomeComponents/Carousel";
 import Posts from "./Faculty/HomeComponents/Posts";
-
+import About from "./Faculty/HomeComponents/About";
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar/>
-      <Carousel/>
-      <Posts/> */}
-      <BrowserRouter>
+      <Navbar />
+      <Carousel />
+      <Posts />
+      <About />
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Org" element={<Organize />} />
@@ -25,7 +26,7 @@ function App() {
           <Route path="/addpost" element={<Addpost />} />
           <Route path="/applicant" element={<Applicant />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
