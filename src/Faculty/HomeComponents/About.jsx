@@ -43,13 +43,31 @@ const AboutUs = () => {
           <div className="col-lg-6 col-12 d-flex align-items-center">
             <h3 className="w-100">
               <span className={`${about.textSpan} h6`}>
-                Faculty Wanted was born out of a need for a more cohesive
-                connection between educational institutions and talented
-                educators. As experienced professionals in the academic realm,
-                we understood the challenges both sides faced during the hiring
-                process. Our journey began with a simple vision: to create a
-                platform that bridges the gap between colleges seeking faculty
-                and job-seeking educators.
+                <h2>Purpose and Goals</h2>
+                <p>
+                  At Faculty Wanted, our primary purpose is clear: to facilitate
+                  the hiring process in academia. By connecting colleges with
+                  passionate educators, we aim to enhance the quality of
+                  education by ensuring that institutions have access to
+                  top-tier faculty. Our goals include:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Streamlining Online Job Searches:</strong> Making it
+                    easier for educators to find job postings that align with
+                    their skills and aspirations.
+                  </li>
+                  <li>
+                    <strong>Supporting Academic Institutions:</strong> Helping
+                    colleges discover exceptional talent that contributes to
+                    their academic missions.
+                  </li>
+                  {/* <li>
+                    <strong>Fostering a Supportive Community:</strong> Creating
+                    a space where educators can share experiences, gain
+                    insights, and find mentorship within the academic community.
+                  </li> */}
+                </ul>
               </span>
             </h3>
           </div>
@@ -75,31 +93,7 @@ const AboutUs = () => {
         </section>
 
         <section className="mb-5">
-          <h2>Purpose and Goals</h2>
-          <p>
-            At Faculty Wanted, our primary purpose is clear: to facilitate the
-            hiring process in academia. By connecting colleges with passionate
-            educators, we aim to enhance the quality of education by ensuring
-            that institutions have access to top-tier faculty. Our goals
-            include:
-          </p>
-          <ul>
-            <li>
-              <strong>Streamlining Online Job Searches:</strong> Making it
-              easier for educators to find job postings that align with their
-              skills and aspirations.
-            </li>
-            <li>
-              <strong>Supporting Academic Institutions:</strong> Helping
-              colleges discover exceptional talent that contributes to their
-              academic missions.
-            </li>
-            <li>
-              <strong>Fostering a Supportive Community:</strong> Creating a
-              space where educators can share experiences, gain insights, and
-              find mentorship within the academic community.
-            </li>
-          </ul>
+         
         </section>
       </div>
       */}
