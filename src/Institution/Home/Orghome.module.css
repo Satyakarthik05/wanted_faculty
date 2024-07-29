@@ -192,19 +192,24 @@ th {
   text-align: center;
   width: 25px;
 }
-.optiondelete {
+.optiondeletes {
   border: none;
   text-align: center;
-  width: 25px;
+  width: 50px;
+  background-color: transparent;
+}
+.optiondeletes:hover{
+  background: transparent;
 }
 
-.edit,
 .delete {
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
+  color: #d9534f;
 }
 .applicants{
   font-size: 30px;
+  color: green;
 }
 .contentss {
   /* width: 800px; */
@@ -312,6 +317,31 @@ th {
   height: 120px;
   animation: spin 2s linear infinite;
   margin: 20px auto; /* Center the loader */
+}
+.yes{
+  width: 60px;
+}
+.no{
+  width: 60px;
+}
+.deleteBtn{
+  display: flex;
+  justify-content: space-evenly;
+}
+.deleteMod{
+  width: 500px;
+  height: 100vh;
+  max-height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: white;
+  border-radius: 20px;
+  border: 2px solid green;
+  margin-top: 8%;
 }
 
 @keyframes spin {

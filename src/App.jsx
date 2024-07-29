@@ -6,28 +6,28 @@ import "./App.css";
 import Orghome from "./Institution/Home/Orghome";
 import Addpost from "./Institution/AddPost/Addpost";
 import Applicant from "./Institution/Applicants/Applicant";
-import Navbar from "./Faculty/HomeComponents/Navbar";
-import Carousel from "./Faculty/HomeComponents/Carousel";
-import Posts from "./Faculty/HomeComponents/Posts";
-import CarouselComponent from "./Faculty/HomeComponents/AboutUs";
+import Home from "./Faculty/Home/Home";
+import AllPosts from "./Faculty/AllPosts/AllPosts";
+import Profile from "./Faculty/Profile/Profile";
+import MyApplications from "./Faculty/Myapplications/MyApplications";
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar/>
-      <Carousel/>
-      <Posts/> */}
-      <CarouselComponent/>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={<Login />} />
           <Route path="/Org" element={<Organize />} />
           <Route path="/myposts" element={<Orghome />} />
           <Route path="/addpost" element={<Addpost />} />
           <Route path="/applicant" element={<Applicant />} />
+          <Route path="/viewall" element={<AllPosts />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/applications" element={<MyApplications/>}/>
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }

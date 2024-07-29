@@ -8,7 +8,7 @@
   background: linear-gradient(45deg, #0037ec, #757575);
 }
 
-.form {
+.formss {
   --width-of-input: 200px;
   --border-height: 1px;
   --border-before-color: rgba(95, 95, 95, 0.39);
@@ -91,12 +91,15 @@ input:focus {
   /* height: 10px; */
   flex-direction: column;
 }
-.designation{
+.designations{
   display: flex;
   flex-direction: column;
   color:  rgba(201, 200, 200, 0.769);
 }
-.designation_options input{
+.designation_optionss{
+  display: flex;
+}
+.designation_optionss input{
   margin-top: 10px;
   width: 35px;
   height: 15px;

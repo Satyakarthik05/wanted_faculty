@@ -129,7 +129,7 @@ const Addpost = () => {
         </h1>
         <br />
         <br />
-        <form className={style.form} onSubmit={handlePost}>
+        <form className={style.formss} onSubmit={handlePost}>
           <div className={style.select_branch}>
             <label htmlFor="branch" className={style.branch}>Select Branch</label>
             <select name="branch" id="branch" className={style.select} value={Branch} onChange={(e) => setBranch(e.target.value)}>
@@ -146,9 +146,9 @@ const Addpost = () => {
               <option value="Automobile">Automobile</option>
             </select>
           </div>
-          <div className={style.designation}>
+          <div className={style.designations}>
             <label htmlFor="designation">Designations:</label>
-            <div className={style.designation_options}>
+            <div className={style.designation_optionss}>
               <label htmlFor="UG">UG</label>
               <input
                 type="checkbox"

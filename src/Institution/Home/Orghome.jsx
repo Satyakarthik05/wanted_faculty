@@ -199,10 +199,10 @@ const Orghome = () => {
                     <td>{item.Nofopenings}</td>
                     <td>{item.Salary}</td>
                     <td className={mod.options}>
-                      <button className={mod.optiondelete} onClick={() => handleDeleteId(item._id)}>
+                      <button className={mod.optiondeletes} onClick={() => handleDeleteId(item._id)} >
                         <MdDeleteForever className={mod.delete} />
                       </button>
-                      <button className={mod.optiondelete} onClick={() => handleApplicants(item._id)}>
+                      <button className={mod.optiondeletes} onClick={() => handleApplicants(item._id)}>
                       <ImUsers  className={mod.applicants} />
                       </button>
                     </td>
@@ -271,11 +271,13 @@ const Orghome = () => {
                 </tbody>
               </table>
             )}
+            <button className="btn btn-danger" onClick={()=> setVisible(false)} style={{width:"70px",marginTop:"20px"}}>Close</button>
           </Model>
 
+          <div className={mod.deletepost}>
           <Model
             isOpen={visibledelete}
-            onRequestClose={closeDelete}
+            onRequestClose={setVisibledelete}
             className={mod.deleteMod}
             style={{
               overlay: {
@@ -294,6 +296,7 @@ const Orghome = () => {
               <div style={{ color: "green" }}>Post deleted successfully!</div>
             )}
           </Model>
+          </div>
         </div>
       </div>
     </div>

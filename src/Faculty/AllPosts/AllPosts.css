@@ -14,13 +14,12 @@ li {
     margin-left: 20px;
 }
 
-.AllPosts {
+.AllPostss {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-}
-.card{
-    height: auto;
+    margin: 0;
+    padding: 0;
 }
 .card-body{
     height: auto;

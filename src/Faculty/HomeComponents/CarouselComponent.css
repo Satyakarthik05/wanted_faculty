@@ -1,34 +1,48 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .custom-carousel {
-    width: 80%;
-    margin: 0 auto;
-  }
-  
-  .custom-carousel-inner {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .custom-card {
-    display: flex;
-    flex-direction: column;
-    width: 48%; /* Adjust this to control the width of each card */
+.card {
     height: 400px;
   }
   
-  .custom-card-body {
-    flex: 0 0 80%;
-    overflow: auto; /* Optional: Add scroll if the text is too long */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
   
-  .custom-card-img {
-    flex: 0 0 30%;
-    object-fit: cover; /* Ensure the image covers the space properly */
+  .card-text {
+    flex-grow: 1;
+  }
+  
+  .img-fluids {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    max-width: 150px;
+    max-height: 150px;
+  }
+  .description {
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .description {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .description {
+      font-size: 0.8rem;
+    }
+    .card {
+        height: 400px;
+    }
+    .img-fluids {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      max-width: 150px;
+      max-height: 150px;
+    }
   }
   
