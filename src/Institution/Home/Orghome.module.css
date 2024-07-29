@@ -228,6 +228,21 @@ th {
   /* border: 2px solid green; */
   margin-top: 10%;
 }
+.successDelete{
+  width: 400px;
+  height: 100vh;
+  max-height: 100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: white;
+  border-radius: 20px;
+  border: 2px solid green;
+  margin-top: 8%;
+}
 .close{
   display: flex;
   justify-content: center;
@@ -323,15 +338,16 @@ th {
 }
 .no{
   width: 60px;
+  margin-left: 10px;
+  background-color: #d9534f;
 }
 .deleteBtn{
   display: flex;
-  justify-content: space-evenly;
 }
 .deleteMod{
   width: 500px;
   height: 100vh;
-  max-height: 500px;
+  max-height: 300px;
   margin: auto;
   display: flex;
   flex-direction: column;

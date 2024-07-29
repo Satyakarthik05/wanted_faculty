@@ -6,6 +6,7 @@ import { API_URL } from '../../data/apipath';
 import './Post.css';
 import card from '../../assets/card.jpg';
 import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -34,6 +35,7 @@ const Posts = () => {
   useEffect(() => {
     postHandler();
   }, [selectBranch]);
+  const navigate = useNavigate();
 
   const renderCarouselItems = () => {
     const items = [];
@@ -104,8 +106,8 @@ const Posts = () => {
           {renderCarouselItems()}
         </Carousel>
         <div className="text-center mt-4">
-          <Button >
-            <Link to='/viewall' style={{textDecoration:"none",color:'white',width:"10px"}}>View All</Link>
+          <Button onClick={()=> navigate('viewall')} style={{width:"200px"}}>
+            View All
           </Button>
         </div>
       </div>

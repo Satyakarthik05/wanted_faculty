@@ -21,7 +21,7 @@ const Orghome = () => {
   const [visible, setVisible] = useState(false);
   const [visibledelete,setVisibledelete] = useState(false);
   const [deleteId,setdeleteId] = useState("");
-  const [successDelete,setSuccessdelete]=useState(true);
+  const [successDelete,setSuccessdelete]=useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   Model.setAppElement('#root');
@@ -292,13 +292,24 @@ const Orghome = () => {
               <button className={mod.yes} onClick={handleDelete}>Yes</button>
               <button className={mod.no} onClick={closeDelete}>No</button>
             </div>
-            {successDelete && (
-              <div style={{ color: "green" }}>Post deleted successfully!</div>
-            )}
           </Model>
           </div>
         </div>
       </div>
+      <Model 
+       isOpen={successDelete}
+       onRequestClose={setSuccessdelete}
+       className={mod.successDelete}
+       style={{
+         overlay: {
+           zIndex: 2,
+           background: 'rgba(0, 0, 0, 0.75)',
+         }
+       }}>
+      {successDelete && (
+              <div style={{ color: "green" }}>Post deleted successfully!</div>
+            )}
+      </Model>
     </div>
   );
 }
