@@ -63,6 +63,8 @@ const Posts = () => {
                         <p className="card-text"><b>Experience: {post.Experience}</b></p>
                         <p className="card-text"><b>Designation: {post.Designation.join(',')}</b></p>
                         <p className="card-text"><b>No of Openings: {post.Nofopenings}</b></p>
+                        <p className="card-text"><b>Address: {post.Salary}</b></p>
+                        <p className="card-text"><b>Website: <a href="">visit</a></b></p>
                         <p className="card-text"><b>Salary: {post.Salary}</b></p>
                         <button>Apply</button>
                         {/* <a href="#" className="btn btn-primary">Apply</a> */}
@@ -83,23 +85,6 @@ const Posts = () => {
     <div className="AllPosts">
       <div className="Filter_Branch">
         <h2 style={{textAlign:"center"}}>New Posts</h2>
-        {/* <select
-          name="branch"
-          id="branch"
-          className="filter"
-          value={selectBranch}
-          onChange={(e) => setSelectBranch(e.target.value)}
-        >
-          <option value="Computer Science">Filter Branch</option>
-          <option value="Computer Science">Computer Science</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Electrical">Electrical</option>
-          <option value="Civil">Civil</option>
-          <option value="Mechanical">Mechanical</option>
-          <option value="Information Technology">Information Technology</option>
-          <option value="Metallurgy">Metallurgy</option>
-          <option value="Automobile">Automobile</option>
-        </select> */}
       </div>
       <div className="container posts" style={{ marginTop: "20px" }}>
         <Carousel>
