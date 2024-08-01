@@ -73,8 +73,7 @@ const Orghome = () => {
     }
   };
   
-
-  const handleDelete = async () => {
+ const handleDelete = async () => {
     if (!deleteId) return;
   
     try {
@@ -252,22 +251,28 @@ const Orghome = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {applicant.Applicants.map((item) => (
-                    <tr key={item._id}>
-                      <td>{item.Name}</td>
-                      <td>{item.email}</td>
-                      <td>{item.Designation ? item.Designation.join(', ') : 'N/A'}</td>
-                      <td>{item.Experience || 'N/A'}</td>
-                      <td className={mod.resume}>
-                        <a href={item.Resume} download>
-                          <button className={mod.download}>
-                            <span className={mod.downloadicon}><MdEdit/></span>
-                            <span>Download</span>
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
+                {applicant.Applicants.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.Name}</td>
+                    <td>{item.email}</td>
+                    <td>
+                      {item.UG && item.UG.length > 0 
+                        ? `UG:Year of Passing: ${item.UG[0].yearOfPassing}, Percentage: ${item.UG[0].percentage}`
+                        : 'N/A'};<br />
+                        {item.PG && item.PG.length > 0 
+                        ? `PG:Year of Passing: ${item.PG[0].yearOfPassing}, Percentage: ${item.PG[0].percentage}`
+                        : 'N/A'};<br />
+                        {item.PHD && item.PHD.length > 0 
+                        ? `PHD:Year of Passing: ${item.PHD[0].yearOfPassing}, Percentage: ${item.PHD[0].percentage}`
+                        : 'N/A'};
+                    </td>
+                    <td>{item.Experience || 'N/A'}</td>
+                    <td className={mod.resume}>
+                    <a href={`${API_URL}/uploads/${item.Resume}`} target="" rel="noopener noreferrer">Download Resume</a>
+                    </td>
+                  </tr>
+                ))}
+
                 </tbody>
               </table>
             )}

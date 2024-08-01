@@ -133,13 +133,13 @@ const Addpost = () => {
           <div className={style.select_branch}>
             <label htmlFor="branch" className={style.branch}>Select Branch</label>
             <select name="branch" id="branch" className={style.select} value={Branch} onChange={(e) => setBranch(e.target.value)}>
-              <option value="Computer Science">Select Branch</option>
-              <option value="Computer Science">Computer Science</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Electrical">Electrical</option>
+              <option value="Select Branch">Select Branch</option>
+              <option value="CSE">Computer Science</option>
+              <option value="ECE">Electronics</option>
+              <option value="EEE">Electrical</option>
               <option value="Civil">Civil</option>
               <option value="Mechanical">Mechanical</option>
-              <option value="Information Technology">
+              <option value="IT">
                 Information Technology
               </option>
               <option value="Metallurgy">Metallurgy</option>

@@ -1,150 +1,81 @@
-// src/ProfileForm.js
-import React, { useState, useEffect } from 'react';
-import './MyApplications.css';
+import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { API_URL } from '../../data/apipath';
+// import './AllPosts.css';
+import card from '../../assets/card.jpg';
+import Navbar from '../HomeComponents/Navbar';
+import { useNavigate } from 'react-router-dom';
 
-const MyApplications = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    UG: { yearOfPassing: '', percentage: '' },
-    PG: { yearOfPassing: '', percentage: '' },
-    PHD: { yearOfPassing: '', percentage: '' },
-    experience: '',
-    resume: ''
-  });
+const AllPosts = () => {
+    const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
-  const [showUG, setShowUG] = useState(false);
-  const [showPG, setShowPG] = useState(false);
-  const [showPHD, setShowPHD] = useState(false);
+    const postHandler = async () => {
+      const token = localStorage.getItem('loginToken');
+        try {
+            const response = await fetch(`${API_URL}/faculty/myapplications`, {
+                method: 'GET',
+                headers: {
+                    'token': `${token}`
+                },
+            });
 
-  useEffect(() => {
-    // Fetch user data from the backend
-    fetch('/api/user')
-      .then(response => response.json())
-      .then(data => {
-        setFormData(data);
-        if (data.UG.yearOfPassing || data.UG.percentage) setShowUG(true);
-        if (data.PG.yearOfPassing || data.PG.percentage) setShowPG(true);
-        if (data.PHD.yearOfPassing || data.PHD.percentage) setShowPHD(true);
-      })
-      .catch(error => console.error('Error fetching user data:', error));
-  }, []);
+            if (!response.ok) {
+                console.log("Posts not found");
+            }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
+            const data = await response.json();
+            setPosts(data);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        }
+    };
 
-  const handleNestedChange = (e, level) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [level]: {
-        ...prevData[level],
-        [name]: value
-      }
-    }));
-  };
+    useEffect(() => {
+        postHandler();
+    }, []);
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    if (name === 'showUG') setShowUG(checked);
-    if (name === 'showPG') setShowPG(checked);
-    if (name === 'showPHD') setShowPHD(checked);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch('/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  };
-
-  return (
-    <div className="form-container">
-      <h1>Profile Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-section">
-          <label>Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div className="form-section">
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div className="form-section">
-          <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <div className="form-section">
-          <label>
-            <input type="checkbox" name="showUG" checked={showUG} onChange={handleCheckboxChange} />
-            Undergraduate
-          </label>
-          {showUG && (
-            <div className="education-section">
-              <label>Year of Passing:</label>
-              <input type="text" name="yearOfPassing" value={formData.UG.yearOfPassing} onChange={(e) => handleNestedChange(e, 'UG')} />
-              <label>Percentage:</label>
-              <input type="text" name="percentage" value={formData.UG.percentage} onChange={(e) => handleNestedChange(e, 'UG')} />
+    return (
+        <div className="AllPostss">
+            <Navbar />
+            <div className="container posts" style={{ marginTop: "20px" }}>
+                <div className="row">
+                    {posts.length > 0 ? (
+                        posts.map(post => (
+                            <div key={post._id} className="col-lg-4 col-sm-12 col-md-4 mb-4">
+                                <div className="card" style={{ boxShadow: '0px 3px 15px rgba(40, 44, 49, 0.5)', borderRadius: '10px', height: "auto" }}>
+                                    <div className="row no-gutters">
+                                        <div className="col-auto">
+                                            <img
+                                                src={card || 'default-image-url.jpg'}
+                                                alt="college"
+                                                style={{ width: '100px', height: '100px', borderRadius: '10px', margin: '10px' }}
+                                            />
+                                        </div>
+                                        <div className="col">
+                                            <div className="card-body">
+                                                <h2 className="card-title"><marquee behavior="" direction="">{post.Organization}</marquee></h2>
+                                                <h5 className="card-subtitle mb-2 text-muted">Branch: {post.Branch}</h5>
+                                                <p className="card-text"><b>Experience: {post.Experience}</b></p>
+                                                <p className="card-text"><b>Designation: {post.Designation}</b></p>
+                                                <p className="card-text"><b>No of Openings: {post.Nofopenings}</b></p>
+                                                <p className="card-text"><b>Address-city: {post.address}</b></p>
+                                                <p className="card-text"><b>College-Url: <a href={post.link}>Website</a></b></p>
+                                                <p className="card-text"><b>Salary: {post.Salary}</b></p>
+                                                <button>Status: Pending</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No posts available</p>
+                    )}
+                </div>
             </div>
-          )}
         </div>
-        <div className="form-section">
-          <label>
-            <input type="checkbox" name="showPG" checked={showPG} onChange={handleCheckboxChange} />
-            Postgraduate
-          </label>
-          {showPG && (
-            <div className="education-section">
-              <label>Year of Passing:</label>
-              <input type="text" name="yearOfPassing" value={formData.PG.yearOfPassing} onChange={(e) => handleNestedChange(e, 'PG')} />
-              <label>Percentage:</label>
-              <input type="text" name="percentage" value={formData.PG.percentage} onChange={(e) => handleNestedChange(e, 'PG')} />
-            </div>
-          )}
-        </div>
-        <div className="form-section">
-          <label>
-            <input type="checkbox" name="showPHD" checked={showPHD} onChange={handleCheckboxChange} />
-            PhD
-          </label>
-          {showPHD && (
-            <div className="education-section">
-              <label>Year of Passing:</label>
-              <input type="text" name="yearOfPassing" value={formData.PHD.yearOfPassing} onChange={(e) => handleNestedChange(e, 'PHD')} />
-              <label>Percentage:</label>
-              <input type="text" name="percentage" value={formData.PHD.percentage} onChange={(e) => handleNestedChange(e, 'PHD')} />
-            </div>
-          )}
-        </div>
-        <div className="form-section">
-          <label>Experience:</label>
-          <input type="text" name="experience" value={formData.experience} onChange={handleChange} />
-        </div>
-        <div className="form-section">
-          <label>Resume:</label>
-          <input type="text" name="resume" value={formData.resume} onChange={handleChange} />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
+    );
 };
 
-export default MyApplications;
+export default AllPosts;

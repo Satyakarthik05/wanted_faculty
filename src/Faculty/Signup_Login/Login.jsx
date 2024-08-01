@@ -13,6 +13,7 @@ const Login = () => {
   const [Name, setName] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [phone,setphone] =useState('');
   const [message, setMessage] = useState("");
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
@@ -49,7 +50,7 @@ const Login = () => {
         headers: {
           'content-Type': 'application/json'
         },
-        body: JSON.stringify({ Name, email, password })
+        body: JSON.stringify({ Name, email, password,phone })
       })
 
       const data = await response.json();
@@ -219,9 +220,11 @@ const Login = () => {
                 <div className={org.inputgroup}>
                   <i className={`${org.bx} ${org.bxslockalt}`}></i>
                   <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm password"
+                    type="text"
+                    name="Phone number"
+                    placeholder="Phonenumber"
+                    value={phone}
+                    onChange={(e) => setphone(e.target.value)}
                     required
                   />
                 </div>

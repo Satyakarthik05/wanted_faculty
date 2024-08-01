@@ -167,7 +167,7 @@ const Profile = () => {
           {showPHD && (
             <div className="education-section">
               <label>Year of Passing:</label>
-              <input type="text" name="yearOfPassing" value={formData.PHD[0].yearOfPassing} onChange={(e) => handleNestedChange(e, 'PHD')} disabled={!isEditing} />
+              <input type="text" name="yearOfPassing" value={formData.PHD[0].yearOfPassing} onChange={(e) => handleNestedChange(e, 'PHD')} disabled={!isEditing} placeholder='If not enter persuing year Ex:1st year or 2nd year'/>
               <label>Percentage:</label>
               <input type="text" name="percentage" value={formData.PHD[0].percentage} onChange={(e) => handleNestedChange(e, 'PHD')} disabled={!isEditing} />
             </div>
@@ -186,8 +186,10 @@ const Profile = () => {
             </div>
           )}
         </div>
+        <div className="buttns" style={{display:"flex" , gap:"10px"}}>
         <button type="submit" disabled={!isEditing}>Submit</button>
-        {!isEditing && <button type="button" onClick={handleEdit} style={{ marginTop: "10px" }}>Edit</button>}
+        {!isEditing && <button type="button" onClick={handleEdit} style={{ marginLeft:"" }}>Edit</button>}
+        </div>
       </form>
     </div>
     </div>
